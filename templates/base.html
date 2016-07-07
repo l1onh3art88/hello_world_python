@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello World</title>
+        <meta name="viewport" content="width= device-width, initial-scale=1.0">
+        <style>
+            #main{
+                max-width: 500px;
+                padding: 20px;
+            }
+            .title{
+                font-weight: bold;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <span class="title">Hello World!</span>
+        <div id="main">
+            {% block content%}{%endblock%}
+            {% block stuff %}{% endblock%}
+        </div>
+    </body>
+</html>

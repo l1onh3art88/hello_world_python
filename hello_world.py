@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from os import environ
 
 app = Flask(__name__)
@@ -6,27 +6,16 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/hello")
 def say_hi():
-    return "Hello World!"
+    return render_template('template.html')
     
 @app.route("/hello/<name>")
 def hello_person(name):
-    html="""
-        <h1>
-            Hello {}!
-        </h1>
-        <p>
-            Here's a picture of a kitten. Awwww....
-        </p>
-        <img src = "http://placekitten.com/g/200/300">
-    """
-    return html.format(name.title())
+    return render_template('template.html',my_string=name )
     
 @app.route("/jedi/<first>/<last>")
 def jedi(last,first):
-    name="Your jedi name is: {}{}"
-    
-    return name.format(last[:3],first[:2])
+    return render_template('jedi.html',lst=last[:3], fst=first[:2])
     
 if __name__ == "__main__":
-    app.run(host=environ['IP'],
+    app.run(debug = True, host=environ['IP'],
             port=int(environ['PORT']))
